@@ -9,10 +9,10 @@ using Gumbo, Cascadia, HTTP
 # )
 
 
-title        = Field("title", TextSelector(sel".card .title"))
-subtitle        = Field("subtitle", TextSelector(sel".card .subtitle"))
-location        = Field("location", TextSelector(sel".card .location"))
-posttime        = Field("time", TextSelector(sel".card time"))
+title        = Field("title", TextSelector(sel".title"))
+subtitle        = Field("subtitle", TextSelector(sel".subtitle"))
+location        = Field("location", TextSelector(sel".location"))
+posttime        = Field("time", TextSelector(sel"time"))
 
 sch = Schema([title, subtitle, location, posttime] )
 
@@ -24,7 +24,10 @@ json_data = []
 
 r = HTTP.get("https://realpython.github.io/fake-jobs/");
 h = parsehtml(String(r.body))
-data = scrape(sch, h.root)
-merge!(data, Dict("url" => result.url))
+data = map(x -> scrape(sch, x),  eachmatch(sel".card", h.root))
 push!(json_data, data)
-result.scraped = true    # Update status of spider
+
+open("fake_jobs.json", "w") do io
+    JSON3.pretty(io, data)
+end
+

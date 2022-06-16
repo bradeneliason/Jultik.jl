@@ -13,3 +13,4 @@ An experimental webscraper written in Julia. This is package is in the early sta
 * Scraping
     - Special methods to scrape to JSON, Dataframes, etc.
     - Scrape multiple elements from each page
+    - Perhaps add post-processing to scraped strings. For example stripping whitespace, re-encoding.
