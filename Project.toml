@@ -1,0 +1,13 @@
+name = "Jultik"
+uuid = "3404056c-0f2f-4198-b0f0-3c31d475d505"
+authors = ["Braden Eliason"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
