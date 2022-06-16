@@ -25,9 +25,7 @@ struct PairSelector{G <: AbstractSelector, K <: AbstractSelector,V <: AbstractSe
 end
 
 # TODO: implement new selectors
-# TODO: create a link selector which gets the name of the link eg.  "Product Sheet" -> http://...
 # TODO: Add Constructors for selectors so I can make them with just a string and not sel"..."
-# struct LinkSelector <: AbstractSelector end
 # struct ImageSelector <: AbstractSelector end
 # struct TableSelector <: AbstractSelector end
 

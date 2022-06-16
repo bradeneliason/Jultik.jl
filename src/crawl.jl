@@ -1,7 +1,5 @@
 # TODO:
-#   ⋅ Implement recursive crawling
-#   ⋅ Add different types of spiders - for example pagination crawling
-#   ⋅ 
+
 
 urls(v::Vector{SpiderResult}) = [r.url for r in v]
 
@@ -10,7 +8,11 @@ function crawl!(s::Spider)
         r = HTTP.get(url);
         h = parsehtml(String(r.body))
 
-        links = filter(contains(s.filter), scrape(s.selector, h.root) )
+        links = scrape(s.selector, h.root)
+        
+        if !isnothing(s.filter)
+            filter!(contains(s.filter), links)
+        end
 
         push!(s.results, SpiderResult.(links)...)
 
