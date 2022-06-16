@@ -16,3 +16,5 @@ module Jultik
     export scrape
 
 end
+
+HTTP, Gumbo, Cascadia, DataFrames

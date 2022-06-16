@@ -1,4 +1,3 @@
-# FIXME:
 function simplify(iter)
     if length(iter) == 0
         return ""
@@ -28,7 +27,6 @@ getregex(d::Dict, r::Regex, default) = get.(Ref(d), filter(contains(r), keys(d))
 scrape(s::AttrSelector{Regex}, html) = 
     vcat([getregex(m.attributes, s.attribute, "") for m in eachmatch(s.selector, html)]...)
 
-##
 scrape(s::LinkSelector{String}, html) =
     vcat([strip(nodeText(m)) => get(m.attributes, s.attribute, "") for m in eachmatch(s.selector, html)]...)
 
